@@ -33,7 +33,7 @@ public class BookSwipeService(
         // Get books that user hasn't swiped yet and doesn't own
         var bookIncludes = new List<Func<IQueryable<Book>, Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Book, object>>>
         {
-            query => query.Include(b => b.Owner).Include(b => b.Language)
+            query => query.Include(b => b.Owner)
         };
 
         var booksResult = await bookRepository.GetListAsync<Book>(
@@ -58,7 +58,7 @@ public class BookSwipeService(
                 Description = book.Description,
                 State = book.State,
                 Genre = book.Genre,
-                LanguageName = book.Language ?? string.Empty,
+                Language = book.Language ?? string.Empty,
                 OwnerId = book.OwnerId,
                 OwnerFirstName = book.Owner?.FirstName ?? string.Empty,
                 OwnerLastName = book.Owner?.LastName ?? string.Empty,
