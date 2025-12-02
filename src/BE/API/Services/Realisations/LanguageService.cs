@@ -6,28 +6,28 @@ using DB.Repository.Utilites;
 
 namespace API.Services.Realisations;
 
-public class LanguageService(IGenericRepository<Language> languageRepository) : ILanguageService
+public class LanguageService(IGenericRepository<Book> bookRepository) : ILanguageService
 {
     public async Task<Result<IEnumerable<LanguageResponse>>> GetLanguagesAsync()
     {
-        var languagesResult = await languageRepository.GetListAsync<Language>(
+        var booksResult = await bookRepository.GetListAsync<Book>(
             filter: null,
             includes: null,
             selector: null
         );
 
-        if (!languagesResult.Success)
+        if (!booksResult.Success)
         {
-            return Result<IEnumerable<LanguageResponse>>.Fail(languagesResult.Error);
+            return Result<IEnumerable<LanguageResponse>>.Fail(booksResult.Error);
         }
 
-        var languageResponses = languagesResult.Data.Select(language => new LanguageResponse
-        {
-            Id = language.Id,
-            Name = language.Name,
-            Code = language.Code
-        });
+        var uniqueLanguages = booksResult.Data
+            .Select(book => book.Language)
+            .Where(language => !string.IsNullOrWhiteSpace(language))
+            .Distinct()
+            .OrderBy(language => language)
+            .Select(language => new LanguageResponse { Name = language });
 
-        return Result<IEnumerable<LanguageResponse>>.Ok(languageResponses);
+        return Result<IEnumerable<LanguageResponse>>.Ok(uniqueLanguages);
     }
 }

@@ -63,7 +63,7 @@ public class RecommendationService : IRecommendationService
             author = b.Author,
             description = b.Description,
             genre = b.Genre,
-            language = b.Language?.Name ?? "Unknown",
+            language = b.Language ?? "Unknown",
             state = b.State
         }).ToList();
 
@@ -216,7 +216,7 @@ Analyze the catalog and recommend the most relevant books based on the user's pr
             Description = book.Description,
             Genre = book.Genre,
             State = book.State,
-            LanguageName = book.Language?.Name ?? string.Empty,
+            LanguageName = book.Language ?? string.Empty,
             OwnerId = book.OwnerId,
             OwnerFirstName = book.Owner?.FirstName ?? string.Empty,
             OwnerLastName = book.Owner?.LastName ?? string.Empty,

@@ -13,7 +13,8 @@ public class AddBookRequest
     public string Author { get; set; } = string.Empty;
 
     [Required]
-    public Guid LanguageId { get; set; }
+    [StringLength(50)]
+    public string Language { get; set; } = string.Empty;
 
     [Required]
     [StringLength(500)]

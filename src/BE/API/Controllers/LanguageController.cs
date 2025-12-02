@@ -6,12 +6,12 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HomeController(
+public class LanguageController(
     ILanguageService languageService,
-    ILogger<HomeController> logger)
+    ILogger<LanguageController> logger)
     : ControllerBase
 {
-    [HttpGet("languages")]
+    [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<LanguageResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> GetLanguagesAsync()

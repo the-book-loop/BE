@@ -8,9 +8,7 @@ public class BookResponse
     public string OwnerLastName { get; set; } = string.Empty;
     public string Title { get; set; } = string.Empty;
     public string Author {  get; set; } = string.Empty;
-    public Guid LanguageId { get; set; }
-    public string LanguageName { get; set; } = string.Empty;
-    public string LanguageCode { get; set; } = string.Empty;
+    public string Language { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string State { get; set; } = string.Empty;
     public string Genre { get; set; } = string.Empty;
