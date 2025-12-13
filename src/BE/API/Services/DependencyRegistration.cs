@@ -18,6 +18,8 @@ public class DependencyRegistration
         services.AddScoped<IAiService, OpenAiService>();
         services.AddScoped<IRecommendationService, RecommendationService>();
         services.AddScoped<ISupportService, SupportService>();
+        services.AddScoped<IReviewService, ReviewService>();
+        services.AddScoped<IUserProfileService, UserProfileService>();
 
         return services;
     }

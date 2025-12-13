@@ -8,4 +8,5 @@ public interface INotificationService
 {
     Task NotifyUserAsync(Guid userId, ExchangeNotification notification);
     Task NotifyBookLikeAsync(Guid userId, BookLikeNotification notification);
+    Task NotifyReviewAsync(Guid userId, ReviewNotification notification);
 }

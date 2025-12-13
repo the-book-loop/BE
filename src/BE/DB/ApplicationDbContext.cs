@@ -16,6 +16,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Message> Messages { get; set; }
     public DbSet<BookSwipe> BookSwipes { get; set; }
     public DbSet<SupportTicket> SupportTickets { get; set; }
+    public DbSet<Review> Reviews { get; set; }
 
     public override int SaveChanges()
     {
@@ -117,6 +118,23 @@ public class ApplicationDbContext : DbContext
                   .WithMany()
                   .HasForeignKey(t => t.UserId)
                   .OnDelete(DeleteBehavior.Cascade);
+        });
+        modelBuilder.Entity<Review>(entity =>
+        {
+            entity.HasOne(r => r.Exchange)
+                  .WithMany()
+                  .HasForeignKey(r => r.ExchangeId)
+                  .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(r => r.Reviewer)
+                  .WithMany()
+                  .HasForeignKey(r => r.ReviewerId)
+                  .OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(r => r.ReviewedUser)
+                  .WithMany()
+                  .HasForeignKey(r => r.ReviewedUserId)
+                  .OnDelete(DeleteBehavior.Restrict);
+            entity.HasIndex(r => new { r.ExchangeId, r.ReviewerId })
+                  .IsUnique();
         });
     }
 }
