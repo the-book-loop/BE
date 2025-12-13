@@ -53,7 +53,7 @@ public class BookSwipeServiceTests
                 Id = unswipedBookId,
                 OwnerId = otherUserId,
                 Owner = new User { Id = otherUserId, FirstName = "Owner", LastName = "User" },
-                Language = new Language { Name = "English", Code = "en" },
+                Language = "English",
                 Title = "Unswiped Book",
                 Author = "Author",
                 Description = "Description",

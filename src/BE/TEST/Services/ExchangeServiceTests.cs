@@ -74,7 +74,7 @@ public class ExchangeServiceTests
                 Owner = requester,
                 Title = "Requester's Book",
                 Author = "Author",
-                Language = new Language { Name = "English", Code = "en" },
+                Language = "English",
                 Description = "Description",
                 State = "Good",
                 Genre = "Fiction",
